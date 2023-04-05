@@ -6,7 +6,8 @@ func main(){
 	const conferenceTickets = 50
 	var remainingTickets uint = 50 
 	//var bookings = [50]string{"Nina", "Rossi", "Anks"}
-	var bookings [50]string //alternative declaration syntax for empty array
+	//var bookings [50]string //alternative declaration syntax for empty array
+	var bookings []string //alternative syntax: var bookings = []string{}, bookings := []string{}
 
 	fmt.Println("Welcome to our", conferenceName, "booking application")
 	//printf -> format, %v to indicate place holder
@@ -27,11 +28,12 @@ func main(){
 	fmt.Println("Enter number of tickets: ")
 	fmt.Scan(&userTickets)
 
-	i := 0
-	bookings[i] = firstName + " " + lastName
+	//i := 0
+	//bookings[i] = firstName + " " + lastName
+	bookings = append(bookings, firstName + " " + lastName)
 	remainingTickets -= userTickets
 
 	fmt.Printf("Thank you %v %v for booking %v tickets.\nYou will recieve a confirmation email at %v\n", firstName, lastName, userTickets, userEmail)
 	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
-	fmt.Println(bookings[i])
-}//46:20
+	fmt.Printf("These are all our bookings: %v\n", bookings)
+}
