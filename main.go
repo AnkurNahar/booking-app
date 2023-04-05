@@ -19,6 +19,13 @@ func main(){
 	fmt.Println("Get your tickets here to attend")
 
 	for{ //infinite loop
+
+		//ticketsNotAvailable := remainingTickets == 0 -> can ticketsNotAvailable this as condition
+		if remainingTickets == 0 {
+			fmt.Println("All tickets sold out! Please come back next year")
+			break
+		}
+
 		var firstName string
 		var lastName string
 		var userEmail string
@@ -33,10 +40,14 @@ func main(){
 		fmt.Println("Enter number of tickets: ")
 		fmt.Scan(&userTickets)
 
+		if userTickets > remainingTickets{
+			fmt.Printf("%v tickets remaining for %v, so you cannot book %v tickets\n", remainingTickets, conferenceName, userTickets)
+			continue
+		}
+		remainingTickets -= userTickets
 		//i := 0
 		//bookings[i] = firstName + " " + lastName
 		bookings = append(bookings, firstName + " " + lastName)
-		remainingTickets -= userTickets
 
 		fmt.Printf("Thank you %v %v for booking %v tickets.\nYou will recieve a confirmation email at %v\n", firstName, lastName, userTickets, userEmail)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
