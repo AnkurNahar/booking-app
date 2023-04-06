@@ -30,6 +30,7 @@ func main(){
 		var lastName string
 		var userEmail string
 		var userTickets uint
+		var city string
 
 		fmt.Println("Enter first name: ")
 		fmt.Scan(&firstName)
@@ -57,17 +58,40 @@ func main(){
 
 		fmt.Println("Enter number of tickets: ")
 		fmt.Scan(&userTickets)
-		isValidTicketNumber := userTickets > remainingTickets
+		isValidTicketNumber := userTickets <= remainingTickets
 		if !isValidTicketNumber{
 			fmt.Printf("%v tickets remaining for %v, so you cannot book %v tickets\n\n", remainingTickets, conferenceName, userTickets)
 			continue
+		}
+
+		//switch/case example
+		fmt.Println("Enter city: ")
+		fmt.Scan(&city)
+		switch city {
+			case "New York":
+				//book New York conference tickets
+				fmt.Println("Tickets for New York conference!")
+			case "Singapore", "Hong Kong":
+				//book Singapore/Hong Kong conference tickets
+				fmt.Println("Tickets for Singapore/Hong Kong conference!")
+			case "London":
+				//book London conference tickets
+				fmt.Println("Tickets for London conference!")
+			case "Berlin":
+				//book Berlin conference tickets
+				fmt.Println("Tickets for Berlin conference!")
+			case "Mexico City":
+				//book Mexico City conference tickets
+				fmt.Println("Tickets for Mexico City conference!")
+			default:
+				fmt.Print("no valid city selected\n\n")
+				continue
 		}
 
 		remainingTickets -= userTickets
 		//i := 0
 		//bookings[i] = firstName + " " + lastName
 		bookings = append(bookings, firstName + " " + lastName)
-
 		fmt.Printf("Thank you %v %v for booking %v tickets.\nYou will recieve a confirmation email at %v\n", firstName, lastName, userTickets, userEmail)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
 
