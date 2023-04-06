@@ -33,17 +33,36 @@ func main(){
 
 		fmt.Println("Enter first name: ")
 		fmt.Scan(&firstName)
-		fmt.Println("Enter last name: ")
-		fmt.Scan(&lastName)
-		fmt.Println("Enter email address: ")
-		fmt.Scan(&userEmail)
-		fmt.Println("Enter number of tickets: ")
-		fmt.Scan(&userTickets)
-
-		if userTickets > remainingTickets{
-			fmt.Printf("%v tickets remaining for %v, so you cannot book %v tickets\n", remainingTickets, conferenceName, userTickets)
+		isValidFirstName := len(firstName) >= 2
+		if !isValidFirstName {
+			fmt.Print("Name is to short\n\n")
 			continue
 		}
+
+		fmt.Println("Enter last name: ")
+		fmt.Scan(&lastName)
+		isValidLastName := len(lastName) >= 2
+		if !isValidLastName {
+			fmt.Print("Name is to short\n\n")
+			continue
+		}
+		
+		fmt.Println("Enter email address: ")
+		fmt.Scan(&userEmail)
+		isValidEmail := strings.Contains(userEmail, "@")
+		if !isValidEmail {
+			fmt.Print("Email address does not contain @\n\n")
+			continue
+		}
+
+		fmt.Println("Enter number of tickets: ")
+		fmt.Scan(&userTickets)
+		isValidTicketNumber := userTickets > remainingTickets
+		if !isValidTicketNumber{
+			fmt.Printf("%v tickets remaining for %v, so you cannot book %v tickets\n\n", remainingTickets, conferenceName, userTickets)
+			continue
+		}
+
 		remainingTickets -= userTickets
 		//i := 0
 		//bookings[i] = firstName + " " + lastName
