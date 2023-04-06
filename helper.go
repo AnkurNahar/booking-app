@@ -1,11 +1,11 @@
-package helper
+package main
 
 import (
 	"fmt"
 	"strings"
 )
 
-func ValidateUserInputs(firstName string, lastName string, userEmail string, userTickets uint, remainingTickets uint, conferenceName string) bool {
+func validateUserInputs() bool {
 	valid := true
 	isValidFirstName := len(firstName) >= 2
 	if !isValidFirstName {

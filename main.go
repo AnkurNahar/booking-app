@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"strings"
-	"booking-app/helper"
 )
 
 //package level variables
@@ -24,7 +23,7 @@ func main(){
 
 		firstName, lastName, userEmail, userTickets = getUserInput()
 
-		valid := helper.ValidateUserInputs(firstName, lastName, userEmail, userTickets, remainingTickets, conferenceName)
+		valid := validateUserInputs()
 		if(!valid){
 			continue
 		}
