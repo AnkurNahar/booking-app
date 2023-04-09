@@ -2,18 +2,24 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 //package level variables
 var conferenceName = "Go Conference"
 const conferenceTickets = 50
 var remainingTickets uint = 50 
-var bookings = make([]map[string]string, 0)//empty slice of maps
+var bookings = make([]UserData, 0)//empty slice of maps
 var firstName string
 var lastName string
 var userEmail string
 var userTickets uint
+
+type UserData struct {
+	firstName string
+	lastName string
+	userEmail string
+	numberOfTickets uint
+}
 
 func main(){
 
@@ -70,13 +76,12 @@ func getUserInput()(string, string, string, uint){
 func bookTickets() {
 	remainingTickets -= userTickets
 
-	//creating map for a user
-	//collection of key value pairs
-	var userData = make(map[string]string)
-	userData["firstName"] = firstName
-	userData["lastName"] = lastName
-	userData["email"] = userEmail
-	userData["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)//research
+	var userData = UserData {
+		firstName: firstName,
+		lastName: lastName,
+		userEmail: userEmail,
+		numberOfTickets: userTickets, 
+	}
 
 	bookings = append(bookings, userData)
 	fmt.Printf("Thank you %v %v for booking %v tickets.\nYou will recieve a confirmation email at %v\n", firstName, lastName, userTickets, userEmail)
@@ -84,9 +89,9 @@ func bookTickets() {
 }
 
 func printBookings() {
-	/* firstNames := []string{}
+	firstNames := []string{}
 	for _, booking := range bookings {					
-		firstNames = append(firstNames, booking["firstName"])
-	} */
+		firstNames = append(firstNames, booking.firstName)
+	}
 	fmt.Printf("List of bookings: %v\n\n", bookings)
 }

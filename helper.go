@@ -36,3 +36,4 @@ func validateUserInputs() bool {
 
 return valid
 }
+
